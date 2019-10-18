@@ -152,6 +152,70 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-Mysql第二次课" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/10/18/Mysql第二次课/">Mysql第二次课</a>
+    </h1>
+  
+
+        
+        <a href="/2019/10/18/Mysql第二次课/" class="archive-article-date">
+  	<time datetime="2019-10-18T09:31:27.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-18</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="这是Mysql第二次课的内容"><a href="#这是Mysql第二次课的内容" class="headerlink" title="这是Mysql第二次课的内容"></a>这是Mysql第二次课的内容</h1><p>Mysql第二次课<br>    表的设计三大规范<br>    第一范式<br>      表中的字段都是不可再分割的最小的数据单元<br>    第二范式<br>      每张表只能描述一件事情，并且每张表必须有主键<br>    第三范式<br>      非主键字段必须依赖于主键字段<br>      换句话说，非主键要与主键字段有直接关系<br>    注意：设计表时，尽可能的符合规范，但是有了为了性能，可以牺牲一点规范<br>    二、Mysql中使用运算符<br>      算数运算符<br>        + - * /<br>      逻辑运算符<br>        and  or<br>      比较运算符<br>          &gt; &lt; &gt;= &lt;= != &lt;&gt;<br>    三、聚合函数<br>      count() 求行数<br>      sun()  求和<br>      avg()    求平均值<br>      max()    求最大值<br>      min()    求最小值<br>    四、几个关键字<br>      in  //在什么什么范围内 例如：name in(‘张三’,’李四’);<br>      not in  //name not in (‘张三’,’李四’);姓名只要不是张三或李四，其他都查询出来<br>      is null //判断数据是否为空<br>      is not null  //是否不为空<br>      like    //模糊查询<br>      betwewn…and…  //在什么什么范围内<br>      distinct  //去重<br>      limit    //查询一张表的前几行</p>
+<p>#创建库<br>CREATE DATABASE n;<br>#使用创建的库<br>USE n;<br>#创建表<br>CREATE TABLE goods(<br>        gid INT PRIMARY KEY AUTO_INCREMENT,<br>        gnam VARCHAR(100) NOT NULL UNIQUE,<br>        gprice FLOAT DEFAULT 0,<br>        gweight FLOAT<br>)<br>#向表中插入数据<br>INSERT INTO goods(gnam,gprice,gweight)<br>                        VALUES(“小熊雨伞”,11.5,200);<br>INSERT INTO goods(gnam,gprice,gweight)<br>                        VALUES(“小熊饼干”,10,100);<br>INSERT INTO goods(gnam,gprice,gweight)<br>                        VALUES(“小熊书包”,25,210);<br>INSERT INTO goods(gnam,gprice,gweight)<br>                        VALUES(“小熊布偶”,15,90);<br>#查询<br>SELECT * FROM goods;<br>#删除gid为3的记录<br>DELETE FROM goods WHERE gid=3;<br>#把小熊雨伞的价格改为20<br>UPDATE goods SET gprice=20 WHERE gnam=”小熊雨伞”;<br>SELECT 5+10;<br>USE n;<br>#查询价格高于10的商品<br>SELECT * FROM goods WHERE gnam=”小熊雨伞” OR gnam=”小熊布偶”;<br>#查询goods表中总共有多少个商品<br>#字段名 新名字：为字段重命名<br>SELECT COUNT(*) “商品数量” FROM goods;<br>#算出goods表中的商品的总价格<br>SELECT SUM(gprice) “商品总价格” FROM goods;<br>#算出goods表中商品的平均价格<br>SELECT AVG(gprice) “平均价格” FROM goods;<br>#查询出价格最高的商品信息<br>SELECT * FROM goods WHERE gprice=(SELECT MAX(gprice) “最高价格” FROM goods);<br>#查询出商品的最低价格<br>SELECT MIN(gprice) “最低价格” FROM goods;<br>#查询出商品名称是小熊雨伞，外套的都查询出来<br>SELECT * FROM goods WHERE gnam IN(“小熊雨伞”,”外套”);<br>#把商品名字去重<br>SELECT DISTINCT gnam FROM goods;<br>#查询goods表的前几行<br>#LIMIT 0,2   从下标是0的行开始取两行<br>SELECT *FROM goods LIMIT 0,2;<br>#查询出价格处于10到5之间的商品信息<br>SELECT * FROM goods WHERE gprice BETWEEN 10 AND 50;</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/10/18/Mysql第二次课/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-Mysql第一次课" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -172,7 +236,8 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="这是Mysql第一次课的内容"><a href="#这是Mysql第一次课的内容" class="headerlink" title="这是Mysql第一次课的内容"></a>这是Mysql第一次课的内容</h1>
+        <h1 id="这是Mysql第一次课的内容"><a href="#这是Mysql第一次课的内容" class="headerlink" title="这是Mysql第一次课的内容"></a>这是Mysql第一次课的内容</h1><p>Mysql第一次课<br>   数据库的分类：<br>    关系型数据库<br>      sqlserver mysql orcale<br>    非关系型数据库nosql<br>      redis<br>   关系型数据库：<br>一、什么是数据库<br>   存储数据的仓库，里边是由<br>   一张一张的表组成，数据是在<br>   表里边<br>二、什么是表<br>   表由行和列组成<br>    行称为记录<br>    列称为字段或属性<br>三、mysql安装<br>  先安装Mysql服务器<br>    数据库与表都是在服务器<br>    上创建的<br>  再安装客户端<br>    负责连接上Mysql服务器进而对服务器进行<br>    操作比较好用的客户端有两个<br>    navicat sqlyog<br>四、sql语句的学习<br>  创建语句<br>      创建库<br>        create database 库名<br>      创建表<br>        create table 表名(<br>           字段1 数据类型 约束,<br>           字段2 数据类型 约束,<br>           字段3 数据类型<br>        )<br>      数据类型<br>       int<br>       char 字符串类型，固定长度<br>       varchar 字符串类型,可变长度<br>       float<br>       date 日期型<br>  插入语句<br>    insert into 表名(字段1,字段2,字段3)<br>        values(数据1,数据2,数据3);<br>  查询语句<br>    select 字段1,字段2,字段3 from 表名;<br>  删除语句<br>    删除库<br>      drop database 库名;<br>    删除表<br>      drop table 表名;<br>    删除表中所有的数据<br>      delete from 表名;<br>    删除表中部分数据<br>      delete from 表名 where …<br>  修改语句<br>    update 表名 set … where …<br>五、约束<br>   1、主键约束(primary key)，不能重复，非空<br>        主键的作用为，主键可以代表一条记录<br>   2、非空约束(not null)<br>   3、唯一约束(unique)不能重复，可以为null<br>           但null也不能重复<br>   4、外键约束(foreign key)<br>         外键：本张表使用的字段，为另一<br>             张表的主键,例如学生表的主键<br>             为学号。而成绩表也会用上学号<br>             ,那么成绩表的学号，就称为成绩<br>             表的外键<br>   5、默认约束(default)</p>
+
       
 
       
