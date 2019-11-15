@@ -152,6 +152,285 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-动态网站开发第二次课讲义" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/11/15/动态网站开发第二次课讲义/">动态网站开发第二次课讲义</a>
+    </h1>
+  
+
+        
+        <a href="/2019/11/15/动态网站开发第二次课讲义/" class="archive-article-date">
+  	<time datetime="2019-11-15T14:02:18.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-11-15</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="动态网站开发第二次课讲义"><a href="#动态网站开发第二次课讲义" class="headerlink" title="动态网站开发第二次课讲义"></a>动态网站开发第二次课讲义</h1><p>一、学习目标<br>1、了解tomcat目录结构<br>2、了解java web项目目录结构<br>3、掌握jsp概念<br>4、了解Servlet概念，创建servlet<br>5、掌握Servlet的执行原理和生命周期<br>6、servlet系统结构<br>7、理解HTTP协议及HTTP请求的结构（请求行，头，体）<br>8、熟练掌握使用HttpServeltRequest获取常用的头信息，请求参数，请求参数乱码处理，转发的特点<br>9、熟练掌握登陆案例<br>二、具体讲解<br>2.1、tomcat目录结构详解<br>打开tomcat的解压之后的目录可以看到如下的目录结构：<br>1、bin：<br>bin目录主要是用来存放tomcat的命令，主要有两大类，一类是以.sh结尾的（linux命令），另一类是以.bat结尾的（windows命令）。可以把命令配置在环境变量里边<br>startup 用来启动tomcat<br>shutdown 用来关闭tomcat<br>修改catalina可以设置tomcat的内存<br>2、webapps：<br>webapps目录用来存放应用程序，当tomcat启动时会去加载webapps目录下的应用程序。可以以文件夹、war包、jar包的形式发布应用。<br>当然，你也可以把应用程序放置在磁盘的任意位置，在配置文件中映射好就行。<br>3、conf<br>conf目录主要是用来存放tomcat的一些配置文件。<br>server.xml可以设置端口号、设置域名或IP、默认加载的项目、请求编码<br>web.xml可以设置tomcat支持的文件类型<br>context.xml可以用来配置数据源之类的<br>tomcat-users.xml用来配置管理tomcat的用户与权限<br>4、lib:<br>lib目录主要用来存放tomcat运行需要加载的jar包。<br>例如，像连接数据库的jdbc的包我们可以加入到lib目录中来。<br>5、logs：<br>logs目录用来存放tomcat在运行过程中产生的日志文件，非常重要的是在控制台输出的日志。（清空不会对tomcat运行带来影响）<br>在windows环境中，控制台的输出日志在catalina.xxxx-xx-xx.log文件中<br>在linux环境中，控制台的输出日志在catalina.out文件中<br>6、temp：<br>temp目录用户存放tomcat在运行过程中产生的临时文件。（清空不会对tomcat运行带来影响<br>7、work:<br>work目录用来存放tomcat在运行时的编译后文件，例如JSP编译后的文件。<br>清空work目录，然后重启tomcat，可以达到清除缓存的作用。<br>2.2、了解java web项目目录结构<br>web.xml配置文件<br>项目启动时会加载web.xml配置文件<br>Web.xml文件的作用如下<br>1、指定欢迎页面，例如：<br>上面的例子指定了几个欢迎页面，显示时按顺序从第一个找起，如果第一个存在，就显示第一个，后面的不起作用。如果第一个不存在，就找第二个，以此类推。<br>2、配置servlet、filter、<br>我们以后创建的servlet与filter需要在web.xml中配置才会生效，至于怎么配置后边的课程讲<br>2.3、掌握jsp概念<br>1、基本概念<br>JSP是运行在服务器端的程序，负责java web项目中的数据展示，以及前后数据的中转与交互<br>JSP页面中，可以写html、css、js代码、java代码、el表达式、jstl标签</p>
+<p>分别在jsp里边写对应的代码</p>
+<p>由于以后jsp里边不写java代码，就不过多演示了</p>
+<p>注意：如何设置jsp的编码格式<br>点击window——–&gt;preferences<br>然后搜索jsp<br>点击JSP Files选择utf-8编码格式<br>2、jsp的执行流程<br>翻译阶段<br>   当Web容器接收到JSP请求时，首先会对JSP文件进行翻译，将编写好的JSP文件通过JSP容器转换成可识别的Java源代码。<br>编译阶段<br>    将Java源文件编译成可执行的字节码文件<br>执行阶段<br>   经过翻译和编译两个阶段，生成了可执行的二进制字节码文件，此时进入执行阶段。当执行结束后，得到处理请求的结果，把生成的结果页面返回到浏览器客户端显示。<br>2.4、了解Servlet概念,创建servlet<br>Servlet概念以及作用<br>Java Servlet 是运行在 Web 服务器或应用服务器上的程序，它是作为来自 Web 浏览器的请求和 HTTP 服务器上的数据库或应用程序之间的中间层。<br>   用户在jsp页面上输入数据，可以提交给servlet做处理，java代码读到的数据，可以通过servlet交给jsp页面去展示。这在项目中就充当了，控制与中转的功能。<br>创建servlet</p>
+<ol>
+<li><p>创建JavaEE项目</p>
+</li>
+<li><p>定义一个类，实现Servlet接口</p>
+</li>
+<li><p>实现接口中的抽象方法</p>
+</li>
+<li><p>配置Servlet<br>在web.xml中配置：</p>
+<!--配置Servlet -->
+<servlet>
+<servlet-name>ServletDemo1</servlet-name>
+<servlet-class>com.dzqc.web.servlet.ServletDemo1</servlet-class>
+</servlet>
+<servlet-mapping>
+<servlet-name>ServletDemo1</servlet-name>
+<url-pattern>/demo1</url-pattern>
+</servlet-mapping></li>
+<li><p>5、servlet执行原理</p>
+</li>
+<li><p>当服务器接受到客户端浏览器的请求后，会解析请求URL路径，获取访问的Servlet的资源路径</p>
+</li>
+<li><p>查找web.xml文件，是否有对应的<url-pattern>标签体内容。</url-pattern></p>
+</li>
+<li><p>如果有，则在找到对应的<servlet-class>全类名</servlet-class></p>
+</li>
+<li><p>tomcat会将字节码文件加载进内存，并且创建其对象</p>
+</li>
+<li><p>调用其方法</p>
+</li>
+<li><p>6、servlet生命周期</p>
+</li>
+<li><p>被创建：执行init方法，只执行一次</p>
+</li>
+<li><p>提供服务：执行service方法，执行多次，servelt核心方法</p>
+</li>
+<li><p>被销毁：执行destroy方法，只执行一次<br>演示案例如下</p>
+</li>
+<li><p>7、servlet体系结构<br>Servlet有一个子类为GenericServlet，GenericServlet又有一个子类为HttpServlet，在创建servlet时，可以实现Servlet接口，也可以继承GenericServlet类。但在项目中创建Servlet的方式为，继承HttpServlet类。<br>创建的方式如下： new—-》servlet</p>
+</li>
+<li><p>7、理解HTTP协议及HTTP请求的结构（请求行，头，体）<br>我们已经掌握了如何创建Servlet,但Servlet的真正作用为处理用于的请求，以及对用户的请求做响应，那么我们就要知道会发送哪几种请求，要想理解请求，就要先知道Http协议与Http请求结构<br>HTTP协议概念<br>Hyper Text Transfer Protocol 超文本传输协议，定义了，客户端和服务器端通信时，发送数据的格式<br>特点：</p>
+</li>
+<li><p>基于TCP/IP的高级协议</p>
+</li>
+<li><p>默认端口号:80</p>
+</li>
+<li><p>基于请求/响应模型的:一次请求对应一次响应</p>
+</li>
+<li><p>无状态的：每次请求之间相互独立，不能交互数据<br>历史版本：</p>
+</li>
+<li><p>0：每一次请求响应都会建立新的连接</p>
+</li>
+<li><p>1：复用连接<br>HTTP协议的请求行，请求头，请求体</p>
+</li>
+<li><p>请求行<br>请求行包含的内容如下：<br>   请求方式   请求url      请求协议/版本</p>
+<pre><code>GET     /login.html       HTTP/1.1</code></pre><p>请求方式：</p>
+<pre><code>HTTP协议有7中请求方式，常用的有2种
+  GET：
+    1. 请求参数在请求行中，在url后。
+    2. 请求的url长度有限制的
+    3. 不太安全
+  POST：
+    1. 请求参数在请求体中
+    2. 请求的url长度没有限制的
+    3. 相对安全</code></pre><p>2、Http协议请求头：<br>请求头的主要作用为：客户端浏览器告诉服务器一些信息<br>1、浏览器告诉服务器，我访问你使用的浏览器版本信息<br>2、告诉服务器，我(当前请求)从哪里来？<br>3、Http协议请求体：<br>封装POST请求消息的请求参数的，换句话说请求体里放的是要提交给服务器的内容，例如账户名、密码。<br>总结一下：<br>通过以上的学习，就知道我们发送请求时，第一要确定请求方式，是post请求或get请求。第二要知道我们的所传递的内容是在请求中放的。</p>
+</li>
+<li><p>8、熟练掌握使用HttpServeltRequest获取常用的头信息，请求参数，请求参数乱码处理，转发的特点<br>当用户发送请求时，服务器会创建两个对象，一个是HttpServeltRequest类的请求对象，一个HttpServletResponse类的响应对象。<br>1、request对象和response对象的原理</p>
+<ol>
+<li>request和response对象是由服务器创建的。我们来使用它们</li>
+<li>request对象是来获取请求消息，response对象是来设置响应消息<br>首先学习request对象<br>2、request对象继承体系结构：<br> ServletRequest        –    接口<pre><code>|    继承</code></pre> HttpServletRequest    – 接口<pre><code>|    实现</code></pre> org.apache.catalina.connector.RequestFacade 类(tomcat)<br>3、request功能：<br>1、获取请求消息数据<ol>
+<li>获取请求行数据<br>GET  /day14/demo1?name=zhangsan  HTTP/1.1<br>方法：<ol>
+<li>获取请求方式 ：GET<br> String getMethod()  </li>
+<li>获取虚拟目录：/day14<br> String getContextPath()</li>
+<li>获取Servlet路径: /demo1<br> String getServletPath()</li>
+<li>获取get方式请求参数：name=zhangsan<br> String getQueryString()</li>
+<li>获取请求URI：/day14/demo1<br> String getRequestURI():        /day14/demo1<br> StringBuffer getRequestURL()  :<a href="http://localhost/day14/demo1" target="_blank" rel="noopener">http://localhost/day14/demo1</a><br>URL：统一资源定位符 ： <a href="http://localhost/day14/demo1" target="_blank" rel="noopener">http://localhost/day14/demo1</a><br> URI：统一资源标识符 : /day14/demo1                        </li>
+<li>获取协议及版本：HTTP/1.1<br> String getProtocol()</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+<li><p>获取客户机的IP地址：</p>
+<pre><code>String getRemoteAddr()</code></pre></li>
+<li><p>获取请求头数据</p>
+<pre><code>  方法：
+    String getHeader(String name):通过请求头的名称获取请求头的值
+    Enumeration&lt;String&gt; getHeaderNames():获取所有的请求头名称
+3.获取请求体数据:
+  请求体：只有POST请求方式，才有请求体
+   步骤：
+     1. 获取流对象
+        BufferedReader getReader()：获取字符输入流，只能操作字符数据
+        ServletInputStream getInputStream()：获取字节输入流
+                                         在文件上传知识点后讲解</code></pre></li>
+<li><p>再从流对象中拿数据<br>2、其它功能（重要）<br>1、获取请求参数通用方式：不论get还是post请求方式都可以使用下列方法来获取请求参数<br> 1.String getParameter(String name):根据参数名称获取参数值</p>
+<ol start="2">
+<li>String[] getParameterValues(String name):根据参数名称获取参数值的数  组</li>
+<li>Enumeration<string> getParameterNames():获取所有请求的参数名称</string></li>
+<li>Map&lt;String,String[]&gt; getParameterMap():获取所有参数的map集合<br>中文乱码问题：<br> get方式：tomcat 8 已经将get方式乱码问题解决了<br> post方式：会乱码<br>解决：在获取参数前，设置request的编码request.setCharacterEncoding(“utf-8”);<br>2、请求转发：一种在服务器内部的资源跳转方式<br>1、步骤：</li>
+</ol>
+</li>
+<li><p>通过request对象获取请求转发器对象：<br>RequestDispatcher getRequestDispatcher(String path)</p>
+</li>
+<li><p>使用RequestDispatcher对象来进行转发：<br>forward(ServletRequest request, ServletResponse response)<br>  2、特点：</p>
+<pre><code>1. 浏览器地址栏路径不发生变化
+2. 只能转发到当前服务器内部资源中。
+3. 转发是一次请求</code></pre><p>3、共享数据：</p>
+<pre><code>域对象：一个有作用范围的对象，可以在范围内共享数据
+request域：代表一次请求的范围，一般用于请求转发的多个资源中共享数据
+  方法：
+     1. void setAttribute(String name,Object obj):存储数据
+     2. Object getAttitude(String name):通过键获取值
+     3. void removeAttribute(String name):通过键移除键值对</code></pre></li>
+<li><p>获取ServletContext：</p>
+<pre><code>ServletContext getServletContext()</code></pre><p>讲解案例：</p>
+</li>
+<li><p>9、熟练掌握登陆案例</p>
+</li>
+</ol>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/11/15/动态网站开发第二次课讲义/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-动态网站开发第一次课讲义" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/11/15/动态网站开发第一次课讲义/">第一次讲讲义</a>
+    </h1>
+  
+
+        
+        <a href="/2019/11/15/动态网站开发第一次课讲义/" class="archive-article-date">
+  	<time datetime="2019-11-15T13:50:09.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-11-15</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="动态网站开发第一次课讲义"><a href="#动态网站开发第一次课讲义" class="headerlink" title="动态网站开发第一次课讲义"></a>动态网站开发第一次课讲义</h1><p>一、学习目标</p>
+<ol>
+<li>理解WEB相关概念和WEB服务器概述</li>
+<li>会安装、卸载、启动和关闭tomcat</li>
+<li>掌握为eclipse配置tomcat</li>
+<li>能够创建动态WEB项目</li>
+<li>掌握使用tomcat部署项目</li>
+</ol>
+<p>二、具体讲解<br>2.1、WEB相关概念<br>1、软件架构</p>
+<p>1)    C/S：客户端/服务器端<br>        例如：360安全卫士、QQ等<br>2)    B/S：浏览器/服务器端<br>            例如：淘宝网、京东网、微博、bilibili等<br>2. 资源分类</p>
+<p>1)    静态资源：所有用户访问后，得到的结果都是一样的，称为静态资源.静态资源可以直接被浏览器解析如： html,css,JavaScript<br>2)    动态资源:每个用户访问相同资源后，得到的结果可能不一样。称为动态资源。动态资源被访问后，需要先转换为静态资源，在返回给浏览器如：servlet/jsp,php,asp….<br>3. 网络通信三要素</p>
+<p>1)    IP：电子设备(计算机)在网络中的唯一标识。<br>2)    端口：应用程序在计算机中的唯一标识。 0~65536<br>3)    传输协议：规定了数据传输的规则<br>4. 基础协议：</p>
+<p>1)    tcp:安全协议，三次握手、四次挥手。 速度稍慢<br>2)    udp：不安全协议。 速度快<br>2.2、WEB服务器<br>1、服务器：安装了服务器软件的计算机<br>2、服务器软件：接收用户的请求，处理请求，做出响应<br>3、web服务器软件：接收用户的请求，处理请求，做出响应。<br>在web服务器软件中，可以部署web项目，让用户通过浏览器来访问这些项目<br>web容器<br>4、常见的java相关的web服务器软件：<br>Tomcat：Apache基金组织，中小型的JavaEE服务器，仅仅支持少量的JavaEE规范<br>servlet/jsp。开源的，免费<br>webLogic：oracle公司，大型的JavaEE服务器，支持所有的JavaEE规范，收费的。<br>webSphere：IBM公司，大型的JavaEE服务器，支持所有的JavaEE规范，收费的。<br>JBOSS：JBOSS公司的，大型的JavaEE服务器，支持所有的JavaEE规范，收费的。<br>2.3、Tomcat服务器下载、安装、启动、关闭</p>
+<ol>
+<li>下载：<a href="http://tomcat.apache.org/" target="_blank" rel="noopener">http://tomcat.apache.org/</a> </li>
+<li>安装：解压压缩包即可。<br>注意：安装目录建议不要有中文和空格</li>
+<li>卸载：删除目录就行了</li>
+<li>启动：<br>bin/startup.bat ,双击运行该文件即可<br>5、访问：浏览器输入：<a href="http://localhost:8080" target="_blank" rel="noopener">http://localhost:8080</a> 回车访问自己<br><a href="http://localhost:8080" target="_blank" rel="noopener">http://localhost:8080</a> 访问别人<br>6、tomcat的关闭</li>
+<li>正常关闭：</li>
+</ol>
+<ul>
+<li>bin/shutdown.bat</li>
+<li>ctrl+c</li>
+</ul>
+<ol start="2">
+<li>强制关闭：</li>
+</ol>
+<ul>
+<li>点击启动窗口的×<br>注意8.5启动过程中可能会遇到乱码问题，可以用以下方法解决<br>打开tomcat/conf/目录<br>修改logging.properties<br>找到<br>java.util.logging.ConsoleHandler.encoding = utf-8这行<br>更改为<br>java.util.logging.ConsoleHandler.encoding = GBK</li>
+</ul>
+<p>2.4、掌握为eclipse配置tomcat<br>2.5、创建第一个JavaWeb项目并部署<br>1、新建Web程序，然后测试服务器工作状态<br>new -&gt;new project -&gt;web -&gt; dynamic web project<br>2、部署javaweb项目<br>右键选择项目，然后run as</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/11/15/动态网站开发第一次课讲义/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-Mysql第三次课" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
